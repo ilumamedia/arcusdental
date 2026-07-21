@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&amp;family=Poppins:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#EEE4D6;}
+  a{color:#B08A46;text-decoration:none;}
+  a:hover{color:#8f6d31;}
+  ::selection{background:#C6924A;color:#fff;}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative;width:100%;background:#EEE4D6;color:#332B24;font-family:'Poppins',sans-serif;">
+
+  <!-- hero full-bleed w/ overlay nav -->
+  <div style="position:relative;display:flex;flex-direction:column;">
+    <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:12px clamp(20px,5vw,64px);background:#ECE1D1;">
+      <img src="assets/arcus-logo-dark.png" alt="ARCUS Dental Centar" style="height:66px;width:auto;display:block;">
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMobileMenu }}" aria-label="Meni" style="border:0;background:transparent;padding:8px;cursor:pointer;display:flex;flex-direction:column;gap:6px;">
+        <span style="display:block;width:28px;height:2px;background:#4A4137;"></span>
+        <span style="display:block;width:28px;height:2px;background:#4A4137;"></span>
+        <span style="display:block;width:28px;height:2px;background:#4A4137;"></span>
+      </button>
+      <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:100%;left:0;right:0;background:#F5EFE6;border-top:1px solid rgba(42,35,29,.12);box-shadow:0 22px 44px rgba(20,14,8,.28);z-index:60;display:flex;flex-direction:column;padding:8px 0;">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+          <a href="{{ item.h }}" onClick="{{ closeMobileMenu }}" style="padding:15px 26px;font-size:15px;letter-spacing:.03em;color:#2A231D;" style-hover="background:#EAE0D0;">{{ item.t }}</a>
+        </sc-for>
+        <a href="tel:+381110000000" style="margin:12px 26px 6px;text-align:center;border:1px solid rgba(42,35,29,.4);color:#4A4137;padding:13px 22px;border-radius:100px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Pozovite nas</a>
+      </div>
+      </sc-if>
+      </sc-if>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;gap:clamp(14px,2vw,32px);align-items:center;flex-wrap:wrap;">
+        <sc-for list="{{ navBefore }}" as="item" hint-placeholder-count="1">
+          <a href="{{ item.h }}" style="font-size:14px;letter-spacing:.04em;color:#4A4137;">{{ item.t }}</a>
+        </sc-for>
+        <div style="position:relative;">
+          <span onClick="{{ toggleUsluge }}" style="cursor:pointer;font-size:14px;letter-spacing:.04em;color:#4A4137;display:inline-flex;align-items:center;gap:6px;">Usluge <span style="font-size:9px;color:#B08A46;">▾</span></span>
+          <sc-if value="{{ uslugeOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);background:#F5EFE6;border:1px solid rgba(42,35,29,.12);border-radius:12px;box-shadow:0 18px 44px rgba(20,14,8,.35);overflow:hidden;min-width:260px;z-index:50;">
+            <a href="#usluge" style="display:block;padding:15px 22px;font-size:14px;letter-spacing:.04em;color:#2A231D;" style-hover="background:#EAE0D0;">Stomatologija</a>
+            <a href="#estetika" style="display:block;padding:15px 22px;font-size:14px;letter-spacing:.04em;color:#2A231D;border-top:1px solid rgba(42,35,29,.08);" style-hover="background:#EAE0D0;">Estetska i anti-aging medicina</a>
+          </div>
+          </sc-if>
+        </div>
+        <sc-for list="{{ navMid }}" as="item" hint-placeholder-count="2">
+          <a href="{{ item.h }}" style="font-size:14px;letter-spacing:.04em;color:#4A4137;">{{ item.t }}</a>
+        </sc-for>
+        <div style="position:relative;">
+          <span onClick="{{ toggleCenovnik }}" style="cursor:pointer;font-size:14px;letter-spacing:.04em;color:#4A4137;display:inline-flex;align-items:center;gap:6px;">Cenovnik <span style="font-size:9px;color:#B08A46;">▾</span></span>
+          <sc-if value="{{ cenovnikOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);background:#F5EFE6;border:1px solid rgba(42,35,29,.12);border-radius:12px;box-shadow:0 18px 44px rgba(20,14,8,.35);overflow:hidden;min-width:240px;z-index:50;">
+            <a href="#cenovnik" style="display:block;padding:15px 22px;font-size:14px;color:#2A231D;letter-spacing:.02em;" style-hover="background:#EAE0D0;">Stomatologija</a>
+            <a href="#cenovnik" style="display:block;padding:15px 22px;font-size:14px;color:#2A231D;letter-spacing:.02em;border-top:1px solid rgba(42,35,29,.08);" style-hover="background:#EAE0D0;">Anti-aging medicina</a>
+          </div>
+          </sc-if>
+        </div>
+        <sc-for list="{{ navAfter }}" as="item" hint-placeholder-count="1">
+          <a href="{{ item.h }}" style="font-size:14px;letter-spacing:.04em;color:#4A4137;">{{ item.t }}</a>
+        </sc-for>
+      </div>
+      <a href="tel:+381110000000" style="border:1px solid rgba(42,35,29,.4);color:#4A4137;padding:11px 22px;border-radius:100px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Pozovite nas</a>
+      </sc-if>
+    </div>
+    <div style="position:relative;min-height:660px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(48px,8vw,64px) clamp(20px,5vw,64px);background:repeating-linear-gradient(135deg,#8f8270 0 18px,#998c78 18px 36px);color:#F5EFE6;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,24,18,.42) 0%,rgba(30,24,18,.6) 100%);"></div>
+      <span style="position:absolute;left:24px;bottom:20px;font-family:monospace;font-size:12px;color:rgba(245,239,230,.8);z-index:2;">foto · ordinacija / hero</span>
+      <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
+        <div style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#E7C98C;margin-bottom:28px;">sTOMATOLOGIJA&nbsp;<span style="letter-spacing: 4.16px;">· ESTETSKA I ANTI-AGING MEDICINA</span></div>
+        <h1 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:clamp(40px,10vw,88px);line-height:1.0;margin:0 0 30px;letter-spacing:-0.5px;max-width:960px;text-wrap:balance;">Vaš osmeh<br><font color="#e7c98c"><i>naš prioriet</i></font>.</h1>
+        <p style="font-size:19px;line-height:1.7;color:#E8DECF;max-width:560px;margin:0 0 42px;font-weight:400;">Vrhunska stomatologija i anti-aging medicina u prijatnom ambijentu osmišljenom oko vašeg komfora, sigurnosti i poverenja.</p>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;">
+          <a href="#usluge" style="display:inline-flex;align-items:center;gap:10px;background:rgba(236,225,209,.5);color:#2A231D;padding:18px 40px;border-radius:100px;font-family:'Tenor Sans',sans-serif;font-size:16px;text-transform:uppercase;letter-spacing:.08em;transition:transform .25s ease,background .25s ease;" style-hover="transform:translateY(-4px);background:rgba(236,225,209,.68);">Stomatologija</a>
+          <a href="#estetika" style="display:inline-flex;align-items:center;gap:10px;background:rgba(236,225,209,.5);color:#2A231D;padding:18px 40px;border-radius:100px;font-family:'Tenor Sans',sans-serif;font-size:16px;text-transform:uppercase;letter-spacing:.08em;transition:transform .25s ease,background .25s ease;" style-hover="transform:translateY(-4px);background:rgba(236,225,209,.68);">Estetska i anti-aging medicina</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- o nama dark -->
+  <div id="o-nama" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;background:#2A231D;color:#F0E8DB;">
+    <div style="padding:clamp(48px,7vw,72px) clamp(24px,5vw,64px);display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#E7C98C;margin-bottom:22px;">O nama</div>
+      <h2 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:clamp(34px,5vw,50px);line-height:1.1;margin:0 0 26px;">Napredna klinička ekspertiza uz toplu, ličnu negu.</h2>
+      <p style="font-size:17px;line-height:1.8;color:#CBBFAD;font-weight:400;margin:0 0 20px;">Od preventive do kompleksnih estetskih i implantoloških zahvata — svaki detalj je osmišljen oko vašeg komfora i poverenja. Naš tim je posvećen najvišim standardima savremene medicine.</p>
+      <p style="font-size:17px;line-height:1.8;color:#CBBFAD;font-weight:400;margin:0;">Od prve konsultacije do konačnog rezultata — vodimo vas mirno, jasno i sigurno.</p>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);">
+      <div style="width:100%;aspect-ratio:4/5;max-height:520px;background:repeating-linear-gradient(135deg,#4A4034 0 14px,#544838 14px 28px);display:flex;align-items:flex-end;padding:24px;border-radius:4px;">
+        <span style="font-family:monospace;font-size:12px;color:#C9B592;">foto · ambijent klinike</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- usluge -->
+  <div id="usluge" style="padding:clamp(48px,7vw,72px) clamp(20px,5vw,64px);">
+    <div style="text-align:center;margin-bottom:58px;">
+      <div style="font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B08A46;margin-bottom:18px;">Usluge</div>
+      <h2 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:52px;margin:0;">Stomatologija</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;max-width:1280px;margin:0 auto;">
+      <sc-for list="{{ stomatologija }}" as="s" hint-placeholder-count="8">
+        <div style="position:relative;background:#F3E6CE;border-radius:26px;padding:32px 30px 34px;display:flex;flex-direction:column;transition:transform .28s ease, box-shadow .28s ease;box-shadow:0 1px 2px rgba(51,43,36,.04);" style-hover="transform:translateY(-8px);box-shadow:0 22px 40px rgba(51,43,36,.14);">
+          <div style="position:absolute;top:28px;right:28px;font-size:22px;color:rgba(51,43,36,.28);line-height:1;">+</div>
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.55);margin-bottom:60px;"></div>
+          <h3 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:23px;line-height:1.2;margin:0 0 10px;">{{ s.n }}</h3>
+          <p style="font-size:14px;color:#7A6C5B;font-weight:400;line-height:1.6;margin:0;">{{ s.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- estetika -->
+  <div id="estetika" style="padding:clamp(48px,7vw,72px) clamp(20px,5vw,64px);background:#ECE1D1;">
+    <div style="text-align:center;margin-bottom:58px;">
+      <div style="font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B08A46;margin-bottom:18px;">Usluge</div>
+      <h2 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:52px;margin:0 0 12px;">Estetska &amp; anti-aging medicina</h2>
+      <p style="font-size:16px;color:#7A6C5B;font-weight:400;margin:0;">Prirodni rezultati koji naglašavaju vašu lepotu — diskretno i stručno.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px;max-width:1280px;margin:0 auto;align-items:start;">
+      <sc-for list="{{ estetika }}" as="e" hint-placeholder-count="5">
+        <div style="display:flex;flex-direction:column;">
+          <div style="position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;margin-bottom:20px;">
+            <image-slot id="est-{{ e.i }}" shape="rounded" radius="14" placeholder="Prevucite sliku" style="width:100%;height:100%;"></image-slot>
+          </div>
+          <h3 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:24px;line-height:1.15;margin:0 0 8px;">{{ e.n }}</h3>
+          <p style="font-size:14px;color:#7A6C5B;font-weight:400;line-height:1.6;margin:0 0 16px;">{{ e.d }}</p>
+          <a href="#" style="display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#B08A46;">Detaljnije <span style="font-size:15px;">→</span></a>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- tim -->
+  <div id="tim" style="padding:clamp(48px,7vw,72px) clamp(20px,5vw,64px);background:#E6DAC8;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div style="font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B08A46;margin-bottom:18px;">Naš tim</div>
+      <h2 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:52px;margin:0;">Stručnjaci posvećeni vama</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:48px;max-width:1080px;margin:0 auto;">
+      <sc-for list="{{ team }}" as="m" hint-placeholder-count="2">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(24px,4vw,56px);align-items:center;background:#EEE4D6;">
+          <div style="aspect-ratio:3/4;max-width:320px;background:repeating-linear-gradient(135deg,#DBCDB7 0 12px,#E3D6C2 12px 24px);"></div>
+          <div style="padding:24px 44px 24px 0;">
+            <h3 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:34px;margin:0 0 8px;">{{ m.n }}</h3>
+            <p style="font-size:13px;letter-spacing:.14em;color:#B08A46;text-transform:uppercase;margin:0 0 22px;">{{ m.r }}</p>
+            <p style="font-size:16px;line-height:1.8;color:#6B5F53;font-weight:400;margin:0;">{{ m.b }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- kontakt -->
+  <div id="kontakt" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0;">
+    <div style="display:flex;align-items:center;justify-content:center;padding:40px;">
+      <div style="width:100%;min-height:420px;border:1px solid rgba(51,43,36,.18);border-radius:8px;overflow:hidden;">
+        <iframe title="Mapa · Stanoja Glavaša 3, Beograd" src="https://maps.google.com/maps?q=Stanoja%20Glava%C5%A1a%203%2C%20Beograd&z=16&output=embed" style="width:100%;height:100%;min-height:420px;border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <div style="padding:clamp(48px,6vw,64px) clamp(24px,5vw,64px);">
+      <div style="font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B08A46;margin-bottom:22px;">Lokacija i kontakt</div>
+      <h2 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:44px;margin:0 0 40px;line-height:1.1;">Zakažite Vašu posetu</h2>
+      <div style="display:flex;flex-direction:column;gap:26px;max-width:400px;">
+        <div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#B08A46;margin-bottom:6px;">Adresa</div><div style="font-size:17px;color:#4A4137;">Stanoja Glavaša&nbsp; &nbsp;11000 Beograd</div></div>
+        <div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#B08A46;margin-bottom:6px;">Telefon</div><a href="tel:+381110000000" style="font-size:17px;color:#4A4137;">+381 11 000 00 00</a></div>
+        <div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#B08A46;margin-bottom:6px;">Email</div><a href="mailto:kontakt@arcusdental.rs" style="font-size:17px;color:#4A4137;">kontakt@arcusdental.rs</a></div>
+        <div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#B08A46;margin-bottom:6px;">Radno vreme</div><div style="font-size:17px;color:#4A4137;line-height:1.6;">Pon–Pet · 09:00–20:00<br>Subota · 09:00–14:00</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:28px clamp(24px,5vw,64px);background:#2A231D;color:#B3A794;">
+    <img src="assets/arcus-logo-light.png" alt="ARCUS" style="height:40px;width:auto;">
+    <span style="font-size:13px;">© 2026 ARCUS Dental Centar · @arcusdental</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cenovnikOpen: false, uslugeOpen: false, mobileMenuOpen: false, isMobile: false };
+  componentDidMount() {
+    this._onResize = () => {
+      const m = window.innerWidth < 900;
+      if (m !== this.state.isMobile) this.setState({ isMobile: m, mobileMenuOpen: false });
+    };
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+  renderVals() {
+    const nav = [
+      { t: 'O nama', h: '#o-nama' },
+      { t: 'Usluge', h: '#usluge' },
+      { t: 'Naš tim', h: '#tim' },
+      { t: 'Naši radovi', h: 'radovi.html' },
+      { t: 'Cenovnik', h: '#cenovnik' },
+      { t: 'Lokacija i kontakt', h: '#kontakt' },
+    ];
+    const stomatologija = [
+      { i: '01', n: 'Dečija stomatologija', d: 'Nežan, strpljiv pristup najmlađima i prijatno prvo iskustvo kod stomatologa.', bg: '#F3E6CE' },
+      { i: '02', n: 'Restaurativna stomatologija', d: 'Estetske plombe i nadoknade koje vraćaju funkciju i prirodan izgled zuba.', bg: '#EAD8B6' },
+      { i: '03', n: 'Endodoncija', d: 'Precizno lečenje kanala korena uz savremene tehnike bez bola.', bg: '#E2CBA0' },
+      { i: '04', n: 'Oralna hirurgija i implantologija', d: 'Ugradnja implanata i hirurški zahvati uz maksimalan komfor i sigurnost.', bg: '#F3E6CE' },
+      { i: '05', n: 'Protetika', d: 'Krunice, mostovi i proteze izrađene po meri za trajan, prirodan osmeh.', bg: '#EAD8B6' },
+      { i: '06', n: 'Parodontologija', d: 'Zdravlje desni i potpornog tkiva — osnova svakog lepog osmeha.', bg: '#E2CBA0' },
+      { i: '07', n: 'Ortopedija vilice', d: 'Ispravljanje položaja zuba i vilice, uključujući diskretne prozirne folije.', bg: '#F3E6CE' },
+      { i: '08', n: 'Kozmetička stomatologija', d: 'Viniri, izbeljivanje i estetske korekcije za savršen osmeh.', bg: '#EAD8B6' },
+    ];
+    const estetika = [
+      { i: 'a', n: 'Biorevitalizacija', d: 'Duboka hidratacija i podsticanje prirodne obnove kože.', off: '0px' },
+      { i: 'b', n: 'Hijaluronski fileri', d: 'Vraćanje volumena i glatkoće za skladan izgled lica.', off: '48px' },
+      { i: 'c', n: 'Mezoterapija', d: 'Koktel vitamina i aktivnih sastojaka za blistavu kožu.', off: '0px' },
+      { i: 'd', n: 'Piling', d: 'Nežna eksfolijacija za svežiji i ujednačeniji ten.', off: '48px' },
+      { i: 'e', n: 'Botoks', d: 'Diskretno ublažavanje mimičkih bora, prirodan rezultat.', off: '0px' },
+    ];
+    const team = [
+      { n: 'Dr [ime i prezime]', r: 'Osnivač · Stomatolog', b: 'Kratak opis lekara — specijalnost, iskustvo i pristup pacijentima. (tekst dodajemo naknadno)' },
+      { n: 'Dr [ime i prezime]', r: 'Stomatolog · Estetska medicina', b: 'Kratak opis lekara — specijalnost, iskustvo i pristup pacijentima. (tekst dodajemo naknadno)' },
+    ];
+    const works = [
+      { l: 'pre / posle · 01' }, { l: 'pre / posle · 02' }, { l: 'pre / posle · 03' },
+      { l: 'pre / posle · 04' }, { l: 'pre / posle · 05' }, { l: 'pre / posle · 06' },
+    ];
+    return {
+      nav, stomatologija, estetika, team, works,
+      navBefore: nav.slice(0, 1),
+      navMid: nav.slice(2, 4),
+      navAfter: nav.slice(5),
+      cenovnikOpen: this.state.cenovnikOpen,
+      toggleCenovnik: () => this.setState(s => ({ cenovnikOpen: !s.cenovnikOpen })),
+      uslugeOpen: this.state.uslugeOpen,
+      toggleUsluge: () => this.setState(s => ({ uslugeOpen: !s.uslugeOpen })),
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      mobileMenuOpen: this.state.mobileMenuOpen,
+      toggleMobileMenu: () => this.setState(s => ({ mobileMenuOpen: !s.mobileMenuOpen })),
+      closeMobileMenu: () => this.setState({ mobileMenuOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

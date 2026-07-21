@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#EEE4D6;}
+  a{color:#B08A46;text-decoration:none;}
+  a:hover{color:#8f6d31;}
+  ::selection{background:#C6924A;color:#fff;}
+</style>
+</helmet>
+
+<div style="position:relative;width:100%;background:#EEE4D6;color:#332B24;font-family:'Poppins',sans-serif;">
+
+  <!-- top bar -->
+  <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:56px;padding:12px 64px;background:#ECE1D1;">
+    <a href="index.html"><img src="assets/arcus-logo-dark.png" alt="ARCUS Dental Centar" style="height:66px;width:auto;display:block;"></a>
+    <div style="display:flex;gap:32px;align-items:center;">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.h }}" style="font-size:14px;letter-spacing:.04em;color:{{ item.c }};">{{ item.t }}</a>
+      </sc-for>
+    </div>
+    <a href="tel:+381110000000" style="border:1px solid rgba(42,35,29,.4);color:#4A4137;padding:11px 22px;border-radius:100px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Pozovite nas</a>
+  </div>
+
+  <!-- header -->
+  <div style="text-align:center;padding:52px 64px 44px;">
+    <div style="font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B08A46;margin-bottom:18px;">Naši radovi</div>
+    <h1 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:64px;line-height:1.05;margin:0 0 16px;letter-spacing:-0.5px;">Rezultati koji govore</h1>
+    <p style="font-size:17px;line-height:1.7;color:#6B5F53;max-width:560px;margin:0 auto 10px;font-weight:400;">Svaki osmeh je priča za sebe — pogledajte transformacije naših pacijenata.</p>
+  </div>
+
+  <!-- gallery -->
+  <div style="padding:0 64px 110px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <sc-for list="{{ works }}" as="w" hint-placeholder-count="9">
+        <div style="aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#DBCDB7 0 12px,#E3D6C2 12px 24px);display:flex;align-items:flex-end;padding:18px;">
+          <span style="font-family:monospace;font-size:11px;color:#9A8C7A;">{{ w.l }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- CTA band -->
+  <div style="text-align:center;padding:80px 64px;background:#2A231D;color:#F0E8DB;">
+    <h2 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:40px;margin:0 0 14px;">Spremni za vaš novi osmeh?</h2>
+    <p style="font-size:16px;color:#CBBFAD;font-weight:400;margin:0 auto 30px;max-width:500px;">Zakažite konsultaciju i saznajte šta možemo da uradimo za vas.</p>
+    <a href="tel:+381110000000" style="display:inline-block;background:#C6924A;color:#2A231D;padding:16px 38px;border-radius:100px;font-size:15px;letter-spacing:.05em;font-weight:500;">Pozovite nas · +381 11 000 00 00</a>
+  </div>
+
+  <!-- footer -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:40px 64px;background:#2A231D;color:#B3A794;">
+    <img src="assets/arcus-logo-light.png" alt="ARCUS" style="height:40px;width:auto;">
+    <span style="font-size:13px;">© 2026 ARCUS Dental Centar · @arcusdental</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const home = 'index.html';
+    const gold = '#B08A46', dark = '#4A4137';
+    const nav = [
+      { t: 'O nama', h: home + '#o-nama', c: dark },
+      { t: 'Usluge', h: home + '#usluge', c: dark },
+      { t: 'Naš tim', h: home + '#tim', c: dark },
+      { t: 'Naši radovi', h: '#', c: gold },
+      { t: 'Lokacija i kontakt', h: home + '#kontakt', c: dark },
+    ];
+    const works = [
+      { l: 'pre / posle · 01' }, { l: 'pre / posle · 02' }, { l: 'pre / posle · 03' },
+      { l: 'pre / posle · 04' }, { l: 'pre / posle · 05' }, { l: 'pre / posle · 06' },
+      { l: 'pre / posle · 07' }, { l: 'pre / posle · 08' }, { l: 'pre / posle · 09' },
+    ];
+    return { nav, works };
+  }
+}
+</script>
+</body>
+</html>
