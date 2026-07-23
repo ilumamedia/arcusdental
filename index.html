@@ -18,15 +18,14 @@
   a:hover{color:#8f6d31;}
   ::selection{background:#C6924A;color:#fff;}
 </style>
-<script src="./image-slot.js"></script>
 </helmet>
 
 <div style="position:relative;width:100%;background:#EEE4D6;color:#332B24;font-family:'Poppins',sans-serif;">
 
   <!-- hero full-bleed w/ overlay nav -->
   <div style="position:relative;display:flex;flex-direction:column;">
-    <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:12px clamp(20px,5vw,64px);background:#ECE1D1;">
-      <img src="assets/arcus-logo-dark.png" alt="ARCUS Dental Centar" style="height:66px;width:auto;display:block;">
+    <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:6px clamp(16px,4vw,48px);background:#ECE1D1;">
+      <img src="assets/arcus-logo-dark.png" alt="ARCUS Dental Centar" style="height:88px;width:auto;display:block;">
 
       <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
       <button onClick="{{ toggleMobileMenu }}" aria-label="Meni" style="border:0;background:transparent;padding:8px;cursor:pointer;display:flex;flex-direction:column;gap:6px;">
@@ -115,11 +114,20 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;max-width:1280px;margin:0 auto;">
       <sc-for list="{{ stomatologija }}" as="s" hint-placeholder-count="8">
-        <div style="position:relative;background:#F3E6CE;border-radius:26px;padding:32px 30px 34px;display:flex;flex-direction:column;transition:transform .28s ease, box-shadow .28s ease;box-shadow:0 1px 2px rgba(51,43,36,.04);" style-hover="transform:translateY(-8px);box-shadow:0 22px 40px rgba(51,43,36,.14);">
+        <div style="position:relative;background:{{ s.bg }};border-radius:26px;padding:32px 30px 34px;display:flex;flex-direction:column;transition:transform .28s ease, box-shadow .28s ease;box-shadow:0 1px 2px rgba(51,43,36,.04);" style-hover="transform:translateY(-8px);box-shadow:0 22px 40px rgba(51,43,36,.14);">
           <div style="position:absolute;top:28px;right:28px;font-size:22px;color:rgba(51,43,36,.28);line-height:1;">+</div>
+          <sc-if value="{{ s.img }}" hint-placeholder-val="{{ false }}">
+          <div style="margin:-18px -18px 0;aspect-ratio:4/3;border-radius:12px;overflow:hidden;">
+            {{ s.imgEl }}
+          </div>
+          </sc-if>
+          <sc-if value="{{ s.circle }}" hint-placeholder-val="{{ true }}">
           <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.55);margin-bottom:60px;"></div>
-          <h3 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:23px;line-height:1.2;margin:0 0 10px;">{{ s.n }}</h3>
-          <p style="font-size:14px;color:#7A6C5B;font-weight:400;line-height:1.6;margin:0;">{{ s.d }}</p>
+          </sc-if>
+          <div style="margin-top:auto;padding-top:44px;">
+            <h3 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:23px;line-height:1.2;margin:0 0 10px;">{{ s.n }}</h3>
+            <p style="font-size:14px;color:#7A6C5B;font-weight:400;line-height:1.6;margin:0;">{{ s.d }}</p>
+          </div>
         </div>
       </sc-for>
     </div>
@@ -136,7 +144,7 @@
       <sc-for list="{{ estetika }}" as="e" hint-placeholder-count="5">
         <div style="display:flex;flex-direction:column;">
           <div style="position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden;margin-bottom:20px;">
-            <image-slot id="est-{{ e.i }}" shape="rounded" radius="14" placeholder="Prevucite sliku" style="width:100%;height:100%;"></image-slot>
+            {{ e.imgEl }}
           </div>
           <h3 style="font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:24px;line-height:1.15;margin:0 0 8px;">{{ e.n }}</h3>
           <p style="font-size:14px;color:#7A6C5B;font-weight:400;line-height:1.6;margin:0 0 16px;">{{ e.d }}</p>
@@ -170,7 +178,7 @@
   <div id="kontakt" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0;">
     <div style="display:flex;align-items:center;justify-content:center;padding:40px;">
       <div style="width:100%;min-height:420px;border:1px solid rgba(51,43,36,.18);border-radius:8px;overflow:hidden;">
-        <iframe title="Mapa · Stanoja Glavaša 3, Beograd" src="https://maps.google.com/maps?q=Stanoja%20Glava%C5%A1a%203%2C%20Beograd&z=16&output=embed" style="width:100%;height:100%;min-height:420px;border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="Mapa · Stanoja Glavaša 3, Beograd" src="https://maps.google.com/maps?q=Stanoja%20Glava%C5%A1a%203%2C%20Beograd&amp;z=16&amp;output=embed" style="width:100%;height:100%;min-height:420px;border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
     <div style="padding:clamp(48px,6vw,64px) clamp(24px,5vw,64px);">
@@ -205,6 +213,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
   renderVals() {
+    const imgEl = (src, alt) => src ? React.createElement('img', { src, alt, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null;
     const nav = [
       { t: 'O nama', h: '#o-nama' },
       { t: 'Usluge', h: '#usluge' },
@@ -214,32 +223,28 @@ class Component extends DCLogic {
       { t: 'Lokacija i kontakt', h: '#kontakt' },
     ];
     const stomatologija = [
-      { i: '01', n: 'Dečija stomatologija', d: 'Nežan, strpljiv pristup najmlađima i prijatno prvo iskustvo kod stomatologa.', bg: '#F3E6CE' },
-      { i: '02', n: 'Restaurativna stomatologija', d: 'Estetske plombe i nadoknade koje vraćaju funkciju i prirodan izgled zuba.', bg: '#EAD8B6' },
-      { i: '03', n: 'Endodoncija', d: 'Precizno lečenje kanala korena uz savremene tehnike bez bola.', bg: '#E2CBA0' },
-      { i: '04', n: 'Oralna hirurgija i implantologija', d: 'Ugradnja implanata i hirurški zahvati uz maksimalan komfor i sigurnost.', bg: '#F3E6CE' },
-      { i: '05', n: 'Protetika', d: 'Krunice, mostovi i proteze izrađene po meri za trajan, prirodan osmeh.', bg: '#EAD8B6' },
-      { i: '06', n: 'Parodontologija', d: 'Zdravlje desni i potpornog tkiva — osnova svakog lepog osmeha.', bg: '#E2CBA0' },
-      { i: '07', n: 'Ortopedija vilice', d: 'Ispravljanje položaja zuba i vilice, uključujući diskretne prozirne folije.', bg: '#F3E6CE' },
-      { i: '08', n: 'Kozmetička stomatologija', d: 'Viniri, izbeljivanje i estetske korekcije za savršen osmeh.', bg: '#EAD8B6' },
-    ];
+      { i: '01', n: 'Dečija stomatologija', d: 'Nežan, strpljiv pristup najmlađima i prijatno prvo iskustvo kod stomatologa.', bg: '#E8DECB', circle: true },
+      { i: '02', n: 'Restaurativna stomatologija', d: 'Estetske plombe i nadoknade koje vraćaju funkciju i prirodan izgled zuba.', bg: '#E8DECB', circle: true },
+      { i: '03', n: 'Endodoncija', d: 'Precizno lečenje kanala korena uz savremene tehnike bez bola.', bg: '#DACDB3', circle: true },
+      { i: '04', n: 'Oralna hirurgija i implantologija', d: 'Ugradnja implanata i hirurški zahvati uz maksimalan komfor i sigurnost.', bg: '#E8DECB', img: 'assets/stom-04.webp' },
+      { i: '05', n: 'Protetika', d: 'Krunice, mostovi i proteze izrađene po meri za trajan, prirodan osmeh.', bg: '#E8DECB', circle: true },
+      { i: '06', n: 'Parodontologija', d: 'Zdravlje desni i potpornog tkiva — osnova svakog lepog osmeha.', bg: '#DACDB3', circle: true },
+      { i: '07', n: 'Ortopedija vilice', d: 'Ispravljanje položaja zuba i vilice, uključujući diskretne prozirne folije.', bg: '#E8DECB', img: 'assets/stom-07.webp' },
+      { i: '08', n: 'Kozmetička stomatologija', d: 'Viniri, izbeljivanje i estetske korekcije za savršen osmeh.', bg: '#E8DECB', circle: true },
+    ].map(s => ({ ...s, imgEl: imgEl(s.img, s.n) }));
     const estetika = [
-      { i: 'a', n: 'Biorevitalizacija', d: 'Duboka hidratacija i podsticanje prirodne obnove kože.', off: '0px' },
-      { i: 'b', n: 'Hijaluronski fileri', d: 'Vraćanje volumena i glatkoće za skladan izgled lica.', off: '48px' },
-      { i: 'c', n: 'Mezoterapija', d: 'Koktel vitamina i aktivnih sastojaka za blistavu kožu.', off: '0px' },
-      { i: 'd', n: 'Piling', d: 'Nežna eksfolijacija za svežiji i ujednačeniji ten.', off: '48px' },
-      { i: 'e', n: 'Botoks', d: 'Diskretno ublažavanje mimičkih bora, prirodan rezultat.', off: '0px' },
-    ];
+      { i: 'a', n: 'Biorevitalizacija', d: 'Duboka hidratacija i podsticanje prirodne obnove kože.', img: 'assets/est-a.webp' },
+      { i: 'b', n: 'Hijaluronski fileri', d: 'Vraćanje volumena i glatkoće za skladan izgled lica.', img: 'assets/est-b.webp' },
+      { i: 'c', n: 'Mezoterapija', d: 'Koktel vitamina i aktivnih sastojaka za blistavu kožu.', img: 'assets/est-c.webp' },
+      { i: 'd', n: 'Piling', d: 'Nežna eksfolijacija za svežiji i ujednačeniji ten.', img: 'assets/est-d.webp' },
+      { i: 'e', n: 'Botoks', d: 'Diskretno ublažavanje mimičkih bora, prirodan rezultat.', img: 'assets/est-e.webp' },
+    ].map(e => ({ ...e, imgEl: imgEl(e.img, e.n) }));
     const team = [
       { n: 'Dr [ime i prezime]', r: 'Osnivač · Stomatolog', b: 'Kratak opis lekara — specijalnost, iskustvo i pristup pacijentima. (tekst dodajemo naknadno)' },
       { n: 'Dr [ime i prezime]', r: 'Stomatolog · Estetska medicina', b: 'Kratak opis lekara — specijalnost, iskustvo i pristup pacijentima. (tekst dodajemo naknadno)' },
     ];
-    const works = [
-      { l: 'pre / posle · 01' }, { l: 'pre / posle · 02' }, { l: 'pre / posle · 03' },
-      { l: 'pre / posle · 04' }, { l: 'pre / posle · 05' }, { l: 'pre / posle · 06' },
-    ];
     return {
-      nav, stomatologija, estetika, team, works,
+      nav, stomatologija, estetika, team,
       navBefore: nav.slice(0, 1),
       navMid: nav.slice(2, 4),
       navAfter: nav.slice(5),
