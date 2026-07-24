@@ -36,13 +36,19 @@
   .mnav .call{margin:12px 26px 6px;text-align:center;}
   @media(max-width:900px){.nav,.hdr>.call{display:none;}.burger{display:flex;}}
   /* hero */
-  .hero{position:relative;min-height:660px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(48px,8vw,64px) clamp(20px,5vw,64px);background:repeating-linear-gradient(135deg,#8f8270 0 18px,#998c78 18px 36px);color:#F5EFE6;overflow:hidden;}
+  .hero{position:relative;width:100%;aspect-ratio:1537/840;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(48px,8vw,64px) clamp(20px,5vw,64px);background:repeating-linear-gradient(135deg,#8f8270 0 18px,#998c78 18px 36px);color:#F5EFE6;overflow:hidden;}
   .hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,24,18,.42) 0%,rgba(30,24,18,.6) 100%);}
   .hero-cap{position:absolute;left:24px;bottom:20px;font-family:monospace;font-size:12px;color:rgba(245,239,230,.8);z-index:2;}
-  .hero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
-  .hero h1{font-size:clamp(40px,10vw,88px);line-height:1.0;margin:0 0 30px;letter-spacing:-0.5px;max-width:960px;text-wrap:balance;}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:rgba(236,225,209,.5);color:#2A231D;padding:18px 40px;border-radius:100px;font-family:'Tenor Sans',sans-serif;font-size:16px;text-transform:uppercase;letter-spacing:.08em;transition:transform .25s ease,background .25s ease;}
-  .btn:hover{transform:translateY(-4px);background:rgba(236,225,209,.68);color:#2A231D;}
+  .hero-img{position:absolute;left:0;right:0;bottom:-110px;width:100%;height:auto;display:block;z-index:1;}
+  .hero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;margin-top:-240px;}
+  .hero h1{font-size:clamp(36px,8vw,72px);line-height:1.0;margin:0 0 20px;letter-spacing:-0.5px;max-width:520px;text-wrap:balance;color:#43331A;}
+  .btn,.hbtn{display:inline-flex;align-items:center;gap:10px;background:rgba(236,225,209,.5);color:#2A231D;padding:14px 24px;border:none;cursor:pointer;border-radius:100px;font-family:'Tenor Sans',sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.08em;transition:transform .25s ease,background .25s ease;}
+  .btn:hover,.hbtn:hover{transform:translateY(-4px);background:rgba(236,225,209,.68);color:#2A231D;}
+  .hdrop{position:relative;}
+  .hdrop-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#F5EFE6;border-radius:16px;box-shadow:0 22px 44px rgba(20,14,8,.28);padding:8px;display:none;flex-direction:column;min-width:240px;z-index:50;}
+  .hdrop.open .hdrop-menu{display:flex;}
+  .hdrop-menu a{padding:14px 20px;border-radius:10px;color:#2A231D;font-family:'Tenor Sans',sans-serif;font-size:15px;text-align:left;}
+  .hdrop-menu a:hover{background:rgba(42,35,29,.06);color:#2A231D;}
   /* sections */
   .eyebrow{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B08A46;margin-bottom:18px;}
   .sec-head{text-align:center;margin-bottom:58px;}
@@ -105,14 +111,19 @@
       <div class="hero-ov"></div>
       <span class="hero-cap">foto · ordinacija / hero</span>
       <div class="hero-in">
-        <div style="font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#E7C98C;margin-bottom:28px;">sTOMATOLOGIJA&nbsp;<span style="letter-spacing: 4.16px;">· ESTETSKA I ANTI-AGING MEDICINA</span></div>
-        <h1>Vaš osmeh<br><font color="#e7c98c"><i>naš prioriet</i></font>.</h1>
-        <p style="font-size:19px;line-height:1.7;color:#E8DECF;max-width:560px;margin:0 0 42px;">Vrhunska stomatologija i anti-aging medicina u prijatnom ambijentu osmišljenom oko vašeg komfora, sigurnosti i poverenja.</p>
+        <h1>Vaš osmeh<br><font color="#e7c98c"><i style="color:#43331A;">naš prioriet</i></font>.</h1>
         <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;">
-          <a href="#usluge" class="btn">Stomatologija</a>
-          <a href="#estetika" class="btn">Estetska i anti-aging medicina</a>
+          <a href="#usluge" class="hbtn">Zakaži pregled</a>
+          <div class="hdrop" onclick="this.classList.toggle('open')">
+            <button class="hbtn">Pogledaj usluge<span style="font-size:10px;">▾</span></button>
+            <div class="hdrop-menu">
+              <a href="#usluge">Stomatologija</a>
+              <a href="#estetika">Anti-aging medicina</a>
+            </div>
+          </div>
         </div>
       </div>
+      <img src="assets/hero.png" alt="ARCUS" class="hero-img">
     </div>
   </div>
 
@@ -120,14 +131,13 @@
   <div id="o-nama" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;background:#2A231D;color:#F0E8DB;">
     <div style="padding:clamp(48px,7vw,72px) clamp(24px,5vw,64px);display:flex;flex-direction:column;justify-content:center;">
       <div class="eyebrow" style="color:#E7C98C;">O nama</div>
-      <h2 style="font-size:clamp(34px,5vw,50px);line-height:1.1;margin:0 0 26px;">Napredna klinička ekspertiza uz toplu, ličnu negu.</h2>
-      <p style="font-size:17px;line-height:1.8;color:#CBBFAD;margin:0 0 20px;">Od preventive do kompleksnih estetskih i implantoloških zahvata — svaki detalj je osmišljen oko vašeg komfora i poverenja. Naš tim je posvećen najvišim standardima savremene medicine.</p>
-      <p style="font-size:17px;line-height:1.8;color:#CBBFAD;margin:0;">Od prve konsultacije do konačnog rezultata — vodimo vas mirno, jasno i sigurno.</p>
+      <h2 style="font-size:clamp(34px,5vw,50px);line-height:1.1;margin:0 0 26px;">Arcus dental centar</h2>
+      <p style="font-size:15px;line-height:1.75;color:#CBBFAD;margin:0 0 16px;">Vrhunka stomatologija i anti-aging medicina u prijatnom ambijentu osmisljenom oko vaseg komfora, sigurnosti i poverenja. Od preventive do kompleksnih estetskih i implantoloških zahvata — naš tim je posvećen vašem osmehu. Koristimo najviše standarde savremene medicine.</p>
+      <p style="font-size:15px;line-height:1.75;color:#CBBFAD;margin:0;">Želimo da izgledate i osećate se lepo. Vaše samopozdanje je naša priča o uspehu.</p>
     </div>
-    <div style="display:flex;align-items:center;justify-content:center;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);">
-      <div style="width:100%;aspect-ratio:4/5;max-height:520px;background:repeating-linear-gradient(135deg,#4A4034 0 14px,#544838 14px 28px);display:flex;align-items:flex-end;padding:24px;border-radius:4px;">
-        <span style="font-family:monospace;font-size:12px;color:#C9B592;">foto · ambijent klinike</span>
-      </div>
+    <div style="display:flex;align-items:stretch;justify-content:center;gap:16px;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);">
+      <div style="position:relative;flex:1;aspect-ratio:3/4;max-height:520px;border-radius:4px;overflow:hidden;"><img src="assets/ambijent-1.jpg" alt="Ambijent klinike" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div style="position:relative;flex:1;aspect-ratio:3/4;max-height:520px;border-radius:4px;overflow:hidden;background:repeating-linear-gradient(135deg,#4A4034 0 14px,#544838 14px 28px);"></div>
     </div>
   </div>
 
@@ -210,7 +220,7 @@
 </div>
 <script>
   document.addEventListener('click', function(e){
-    document.querySelectorAll('.drop.open').forEach(function(d){ if(!d.contains(e.target)) d.classList.remove('open'); });
+    document.querySelectorAll('.drop.open,.hdrop.open').forEach(function(d){ if(!d.contains(e.target)) d.classList.remove('open'); });
   });
 </script>
 </body>
