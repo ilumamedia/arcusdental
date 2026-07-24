@@ -36,13 +36,13 @@
   .mnav .call{margin:12px 26px 6px;text-align:center;}
   @media(max-width:900px){.nav,.hdr>.call{display:none;}.burger{display:flex;}}
   /* hero */
-  .hero{position:relative;width:100%;aspect-ratio:1537/840;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(48px,8vw,64px) clamp(20px,5vw,64px);background:repeating-linear-gradient(135deg,#8f8270 0 18px,#998c78 18px 36px);color:#F5EFE6;overflow:hidden;}
+  .hero{position:relative;width:100%;aspect-ratio:1537/840;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(48px,8vw,64px) clamp(20px,5vw,64px);background:repeating-linear-gradient(135deg,#8f8270 0 18px,#998c78 18px 36px);color:#F5EFE6;overflow:hidden;container-type:inline-size;}
   .hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,24,18,.42) 0%,rgba(30,24,18,.6) 100%);}
   .hero-cap{position:absolute;left:24px;bottom:20px;font-family:monospace;font-size:12px;color:rgba(245,239,230,.8);z-index:2;}
   .hero-img{position:absolute;left:0;right:0;bottom:-110px;width:100%;height:auto;display:block;z-index:1;}
-  .hero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;margin-top:-240px;}
-  .hero h1{font-size:clamp(36px,8vw,72px);line-height:1.0;margin:0 0 20px;letter-spacing:-0.5px;max-width:520px;text-wrap:balance;color:#43331A;}
-  .btn,.hbtn{display:inline-flex;align-items:center;gap:10px;background:rgba(236,225,209,.5);color:#2A231D;padding:14px 24px;border:none;cursor:pointer;border-radius:100px;font-family:'Tenor Sans',sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.08em;transition:transform .25s ease,background .25s ease;}
+  .hero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;margin-top:-26%;}
+  .hero h1{font-size:clamp(32px,6.8cqw,150px);line-height:1.0;margin:0 0 20px;letter-spacing:-0.5px;max-width:52cqw;text-wrap:balance;color:#43331A;}
+  .btn,.hbtn{display:inline-flex;align-items:center;gap:10px;background:rgba(236,225,209,.5);color:#2A231D;padding:clamp(10px,1.25cqw,23px) clamp(16px,2.2cqw,42px);border:none;cursor:pointer;border-radius:100px;font-family:'Tenor Sans',sans-serif;font-size:clamp(11px,1.28cqw,24px);text-transform:uppercase;letter-spacing:.08em;transition:transform .25s ease,background .25s ease;}
   .btn:hover,.hbtn:hover{transform:translateY(-4px);background:rgba(236,225,209,.68);color:#2A231D;}
   .hdrop{position:relative;}
   .hdrop-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#F5EFE6;border-radius:16px;box-shadow:0 22px 44px rgba(20,14,8,.28);padding:8px;display:none;flex-direction:column;min-width:240px;z-index:50;}
@@ -109,10 +109,9 @@
     </div>
     <div class="hero">
       <div class="hero-ov"></div>
-      <span class="hero-cap">foto · ordinacija / hero</span>
       <div class="hero-in">
         <h1>Vaš osmeh<br><font color="#e7c98c"><i style="color:#43331A;">naš prioriet</i></font>.</h1>
-        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <div style="display:flex;gap:1.6cqw;align-items:center;flex-wrap:wrap;justify-content:space-between;width:100%;max-width:52cqw;">
           <a href="#usluge" class="hbtn">Zakaži pregled</a>
           <div class="hdrop" onclick="this.classList.toggle('open')">
             <button class="hbtn">Pogledaj usluge<span style="font-size:10px;">▾</span></button>
