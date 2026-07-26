@@ -14,6 +14,13 @@
   a:hover{color:#8f6d31;}
   ::selection{background:#C6924A;color:#fff;}
   h1,h2,h3{font-family:'Tenor Sans',sans-serif;font-weight:400;}
+  @keyframes heroReveal{0%{opacity:0;transform:scale(1.12);}100%{opacity:1;transform:scale(1);}}
+  @keyframes heroRise{0%{opacity:0;transform:translateY(18px);}100%{opacity:1;transform:translateY(0);}}
+  .hero-title span{display:inline-block;opacity:0;animation:heroRise .7s ease-out .3s both;}
+  .hero-btns{opacity:0;animation:heroRise .7s ease-out 1.2s both;}
+  .hero-img{animation:heroReveal 1.4s cubic-bezier(.2,.7,.2,1) both;transform-origin:center bottom;}
+  [data-reveal]{opacity:0;transform:translateY(36px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);}
+  [data-reveal].in{opacity:1;transform:none;}
   .wrap{position:relative;width:100%;}
   /* header */
   .hdr{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:6px clamp(16px,4vw,48px);background:#ECE1D1;}
@@ -111,8 +118,8 @@
     <div class="hero">
       <div class="hero-ov"></div>
       <div class="hero-in">
-        <h1>Vaš osmeh<br><font color="#e7c98c"><i style="color:#43331A;">naš prioriet</i></font></h1>
-        <div style="display:flex;gap:1.6cqw;align-items:center;flex-wrap:wrap;justify-content:space-between;width:100%;max-width:52cqw;">
+        <h1 class="hero-title"><span>Vaš osmeh</span><br><font color="#e7c98c"><i style="color:#43331A;"><span>naš prioriet</span></i></font></h1>
+        <div class="hero-btns" style="display:flex;gap:1.6cqw;align-items:center;flex-wrap:wrap;justify-content:space-between;width:100%;max-width:52cqw;">
           <a href="tel:+381691122022" class="hbtn">Zakaži pregled</a>
           <div class="hdrop" onclick="this.classList.toggle('open')">
             <button class="hbtn">Pogledaj usluge<span style="font-size:10px;">▾</span></button>
@@ -148,14 +155,14 @@
       <h2 style="font-size:52px;margin:0;">Stomatologija</h2>
     </div>
     <div class="grid-stom">
-      <div class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Dečija stomatologija</h3><p>Nežan, strpljiv pristup najmlađima i prijatno prvo iskustvo kod stomatologa.</p></div></div>
-      <div class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Restaurativna stomatologija</h3><p>Estetske plombe i nadoknade koje vraćaju funkciju i prirodan izgled zuba.</p></div></div>
-      <div class="card" style="background:#DACDB3;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Endodoncija</h3><p>Precizno lečenje kanala korena uz savremene tehnike bez bola.</p></div></div>
-      <div class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-img"><img src="assets/stom-04.webp" alt="Oralna hirurgija i implantologija"></div><div class="card-body"><h3>Oralna hirurgija i implantologija</h3><p>Ugradnja implanata i hirurški zahvati uz maksimalan komfor i sigurnost.</p></div></div>
-      <div class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Protetika</h3><p>Krunice, mostovi i proteze izrađene po meri za trajan, prirodan osmeh.</p></div></div>
-      <div class="card" style="background:#DACDB3;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Parodontologija</h3><p>Zdravlje desni i potpornog tkiva — osnova svakog lepog osmeha.</p></div></div>
-      <div class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-img"><img src="assets/stom-07.webp" alt="Ortopedija vilice"></div><div class="card-body"><h3>Ortopedija vilice</h3><p>Ispravljanje položaja zuba i vilice, uključujući diskretne prozirne folije.</p></div></div>
-      <div class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Kozmetička stomatologija</h3><p>Viniri, izbeljivanje i estetske korekcije za savršen osmeh.</p></div></div>
+      <div data-reveal class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Dečija stomatologija</h3><p>Nežan, strpljiv pristup najmlađima i prijatno prvo iskustvo kod stomatologa.</p></div></div>
+      <div data-reveal class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Restaurativna stomatologija</h3><p>Estetske plombe i nadoknade koje vraćaju funkciju i prirodan izgled zuba.</p></div></div>
+      <div data-reveal class="card" style="background:#DACDB3;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Endodoncija</h3><p>Precizno lečenje kanala korena uz savremene tehnike bez bola.</p></div></div>
+      <div data-reveal class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-img"><img src="assets/stom-04.webp" alt="Oralna hirurgija i implantologija"></div><div class="card-body"><h3>Oralna hirurgija i implantologija</h3><p>Ugradnja implanata i hirurški zahvati uz maksimalan komfor i sigurnost.</p></div></div>
+      <div data-reveal class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Protetika</h3><p>Krunice, mostovi i proteze izrađene po meri za trajan, prirodan osmeh.</p></div></div>
+      <div data-reveal class="card" style="background:#DACDB3;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Parodontologija</h3><p>Zdravlje desni i potpornog tkiva — osnova svakog lepog osmeha.</p></div></div>
+      <div data-reveal class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-img"><img src="assets/stom-07.webp" alt="Ortopedija vilice"></div><div class="card-body"><h3>Ortopedija vilice</h3><p>Ispravljanje položaja zuba i vilice, uključujući diskretne prozirne folije.</p></div></div>
+      <div data-reveal class="card" style="background:#E8DECB;"><div class="plus">+</div><div class="card-circle"></div><div class="card-body"><h3>Kozmetička stomatologija</h3><p>Viniri, izbeljivanje i estetske korekcije za savršen osmeh.</p></div></div>
     </div>
   </div>
 
@@ -167,11 +174,11 @@
       <p style="font-size:16px;color:#7A6C5B;margin:0;">Prirodni rezultati koji naglašavaju vašu lepotu — diskretno i stručno.</p>
     </div>
     <div class="grid-est">
-      <div style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-a.webp" alt="Biorevitalizacija"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Biorevitalizacija</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Duboka hidratacija i podsticanje prirodne obnove kože.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
-      <div style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-b.webp" alt="Hijaluronski fileri"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Hijaluronski fileri</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Vraćanje volumena i glatkoće za skladan izgled lica.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
-      <div style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-c.webp" alt="Mezoterapija"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Mezoterapija</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Koktel vitamina i aktivnih sastojaka za blistavu kožu.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
-      <div style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-d.webp" alt="Piling"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Piling</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Nežna eksfolijacija za svežiji i ujednačeniji ten.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
-      <div style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-e.webp" alt="Botoks"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Botoks</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Diskretno ublažavanje mimičkih bora, prirodan rezultat.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
+      <div data-reveal style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-a.webp" alt="Biorevitalizacija"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Biorevitalizacija</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Duboka hidratacija i podsticanje prirodne obnove kože.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
+      <div data-reveal style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-b.webp" alt="Hijaluronski fileri"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Hijaluronski fileri</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Vraćanje volumena i glatkoće za skladan izgled lica.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
+      <div data-reveal style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-c.webp" alt="Mezoterapija"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Mezoterapija</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Koktel vitamina i aktivnih sastojaka za blistavu kožu.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
+      <div data-reveal style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-d.webp" alt="Piling"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Piling</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Nežna eksfolijacija za svežiji i ujednačeniji ten.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
+      <div data-reveal style="display:flex;flex-direction:column;"><div class="est-img"><img src="assets/est-e.webp" alt="Botoks"></div><h3 style="font-size:24px;line-height:1.15;margin:0 0 8px;">Botoks</h3><p style="font-size:14px;color:#7A6C5B;line-height:1.6;margin:0 0 16px;">Diskretno ublažavanje mimičkih bora, prirodan rezultat.</p><a href="#" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;">Detaljnije →</a></div>
     </div>
   </div>
 
@@ -219,6 +226,8 @@
   </div>
 </div>
 <script>
+  var __io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var el=en.target;var sibs=Array.prototype.slice.call(el.parentElement.children).filter(function(x){return x.hasAttribute('data-reveal');});el.style.transitionDelay=(sibs.indexOf(el)*0.08)+'s';el.classList.add('in');__io.unobserve(el);}});},{threshold:0.15});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){__io.observe(el);});
   document.addEventListener('click', function(e){
     document.querySelectorAll('.drop.open,.hdrop.open').forEach(function(d){ if(!d.contains(e.target)) d.classList.remove('open'); });
   });
